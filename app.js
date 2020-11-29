@@ -8,24 +8,48 @@ const port = process.env.PORT || 5000
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let tasks = [];
+let taskArray = [];
+let completedTaskArray = [];
 
 app.get('/', (req, res) => {
     res.render('index', {
-        tasks: tasks
+        taskArray: taskArray
     });
-    console.log(tasks)
+    console.log(`Incomplete Tasks: ${taskArray}`)
+    console.log(`Complete Tasks: ${completedTaskArray}`)
 })
 
 app.post('/addtask', (req, res) => {
     let newTask = req.body.taskName
-    tasks.push(newTask)
+    taskArray.push(newTask)
     res.redirect('/');
 
 })
 
-app.delete('/deletepost', (req,res) => {
-console.log(res)
+app.post('/deletetask', (req,res) => {
+    
+    let selectedTasks = req.body.completedTask;
+
+    if (typeof selectedTasks == 'object') {
+        selectedTasks.forEach(selectedTask => {
+            // let alreadyCompleted = completedTaskArray.includes(selectedTask)
+            // if (!alreadyCompleted) {
+                completedTaskArray.push(selectedTask)
+                let indexOfTaskToDelete = taskArray.indexOf(selectedTask)
+                taskArray.splice(indexOfTaskToDelete, 1)
+            // }
+        });
+    } else {
+        // let alreadyCompleted = completedTaskArray.includes(selectedTasks)
+        // if (!alreadyCompleted) {
+            completedTaskArray.push(selectedTasks)
+            let indexOfTaskToDelete = taskArray.indexOf(selectedTasks)
+            taskArray.splice(indexOfTaskToDelete, 1)
+        // }
+    }
+
+    res.redirect('/')
+    
 })
 
 app.listen(port, () => {
