@@ -30,6 +30,8 @@ app.post('/deletetask', (req,res) => {
     
     let selectedTasks = req.body.completedTask;
 
+    console.log(req.body)
+
     if (typeof selectedTasks == 'object') {
         selectedTasks.forEach(selectedTask => {
             // let alreadyCompleted = completedTaskArray.includes(selectedTask)
