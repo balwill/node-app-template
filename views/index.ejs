@@ -10,46 +10,11 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/4a6c5d1ed7.js" crossorigin="anonymous"></script>
 
-    <title>Todo List</title>
+    <title>Template Title</title>
 </head>
 <body>
 
-    <form class="col-auto" action="/addtask" method="POST">
-        <h1>Mini Project: To Do App</h1>
-        <div class="form-group">
-            <label for="taskName">Task Name</label>
-            <input type="text" class="form-control" id="taskName" name="taskName" >
-        </div>
-        
-        <button type="submit" class="btn btn-primary mb-2">Submit</button>
-        <button formaction="/deletetask" method="delete" class= "btn btn-secondary mb-2">Clear Tasks</button>
-
-        <div class="todo-container">
-            <ul class="list-group todo-list">
-                <form>
-                <% taskArray.forEach(task => { %>
-                    <li class="list-group-item">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="<%= task %>" name="completedTask" id="<%= task %>">
-                            <label class="form-check-label" for="<%= task %>">
-                                <%= task %>
-                            </label>
-                            
-                            <button formaction="/deletetask" type="hidden" style="background:none; border: 0; float: right;"> 
-                                <i class="fas fa-trash-alt" style="font-size:1.5em; color: tomato; "></i>
-                            </button>
-                                
-                            
-
-                        </div>
-                        
-                    </li>
-                <% }) %>
-            </ul> 
-        
-
-        </div>
-    </form>
+    
 
 
 </body>
